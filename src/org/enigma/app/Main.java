@@ -24,21 +24,20 @@ public class Main {
             CaesarCipher cipher = new CaesarCipher(input, output);
             int key;
             switch (entry) {
-                case "1":
+                case "1" -> {
                     System.out.println("Please specify the security key number");
-                    key = Integer.parseInt(reader.readLine());;
+                    key = Integer.parseInt(reader.readLine());
+                    ;
                     cipher.executeAndSaveToFile(Mode.ENCRYPT, key);
                     System.out.println("File is encrypted, please check the following location: \n" + output.toPath());
-                    break;
-                case "2":
+                }
+                case "2" -> {
                     System.out.println("Please specify the security key number");
                     key = Integer.parseInt(reader.readLine());
                     cipher.executeAndSaveToFile(Mode.DECRYPT, key);
                     System.out.println("File is encrypted, please check the following location: \n" + output.toPath());
-                    break;
-                default:
-                    System.out.println("Please specify correct number");
-                    break;
+                }
+                default -> System.out.println("Please specify correct number");
             }
         } catch (IOException e) {
             e.printStackTrace();
