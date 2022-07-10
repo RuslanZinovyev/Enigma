@@ -3,7 +3,7 @@ package org.enigma.controller;
 import org.enigma.exception.ApplicationException;
 import org.enigma.enumerator.ErrorCode;
 import org.enigma.enumerator.Mode;
-import org.enigma.utils.EncryptUtils;
+import org.enigma.service.Operation;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -22,7 +22,7 @@ public class CaesarCipher {
         }
     }
 
-    public void executeAndSaveToFile(Mode mode, int securityKey) {
+    public void executeAndSaveToFile(Operation operation) {
         StringBuilder stringBuilder = new StringBuilder();
         try (FileInputStream fis = new FileInputStream(inputFile);
              InputStreamReader isw = new InputStreamReader(fis, StandardCharsets.UTF_8);
@@ -31,14 +31,7 @@ public class CaesarCipher {
             while (reader.ready()) {
                 String line = reader.readLine();
                 for (char ch : line.toCharArray()) {
-                    if (ch == 32) {
-                        stringBuilder.append(' ');
-                    } else {
-                        switch (mode) {
-                            case ENCRYPT -> stringBuilder.append(EncryptUtils.encryptChar(ch, securityKey));
-                            case DECRYPT -> stringBuilder.append(EncryptUtils.decryptChar(ch, securityKey));
-                        }
-                    }
+                    stringBuilder.append(operation.execute(ch));
                 }
                 stringBuilder.append('\n');
             }
@@ -49,9 +42,10 @@ public class CaesarCipher {
     }
 
     private void writeToFile(StringBuilder builder) {
-        if (!outputFile.toPath().endsWith(".txt")) {
-            throw new ApplicationException("Please specify the text file with .txt extension", ErrorCode.INVALID_FILE_EXTENSION);
-        }
+        //TODO need to fix it
+//        if (!outputFile.toPath().endsWith(".txt")) {
+//            throw new ApplicationException("Please specify the text file with .txt extension", ErrorCode.INVALID_FILE_EXTENSION);
+//        }
         try (FileOutputStream fos = new FileOutputStream(outputFile);
              OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
              BufferedWriter writer = new BufferedWriter(osw)

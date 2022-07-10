@@ -1,31 +1,20 @@
-package org.enigma.utils;
+package org.enigma.service;
 
-import org.enigma.exception.ApplicationException;
 import org.enigma.enumerator.ErrorCode;
+import org.enigma.exception.ApplicationException;
 
 import static org.enigma.utils.MapUtils.decryptMap;
 import static org.enigma.utils.MapUtils.encryptMap;
 
+public class Decryptor implements Operation {
+    private int securityKey;
 
-public class EncryptUtils {
-
-    private EncryptUtils() {}
-
-    public static char encryptChar(char symbol, int securityKey) {
-        if (encryptMap.get(symbol) != null) {
-            if (Character.isUpperCase(symbol)) {
-                int index = encryptMap.get(Character.toLowerCase(symbol));
-                int shift = (index + securityKey) % encryptMap.size();
-                return Character.toUpperCase(decryptMap.get(shift));
-            }
-            int index = encryptMap.get(symbol);
-            int shift = (index + securityKey) % encryptMap.size();
-            return decryptMap.get(shift);
-        }
-        return symbol;
+    public Decryptor(int securityKey) {
+        this.securityKey = securityKey;
     }
 
-    public static char decryptChar(char symbol, int securityKey) {
+    @Override
+    public char execute(char symbol) {
         if (encryptMap.get(symbol) != null) {
             if (Character.isUpperCase(symbol)) {
                 int index = encryptMap.get(Character.toLowerCase(symbol));
@@ -38,5 +27,4 @@ public class EncryptUtils {
         }
         throw new ApplicationException("The symbol for decryption is inappropriate", ErrorCode.DECRYPTION_ERROR);
     }
-
 }

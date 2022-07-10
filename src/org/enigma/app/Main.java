@@ -1,9 +1,14 @@
 package org.enigma.app;
 
 import org.enigma.controller.CaesarCipher;
-import org.enigma.enumerator.Mode;
+import org.enigma.service.Decryptor;
+import org.enigma.service.Encryptor;
+import org.enigma.service.Operation;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
 
@@ -27,13 +32,15 @@ public class Main {
                 case "1" -> {
                     System.out.println("Please specify the security key number");
                     key = Integer.parseInt(reader.readLine());
-                    cipher.executeAndSaveToFile(Mode.ENCRYPT, key);
+                    Operation encryption = new Encryptor(key);
+                    cipher.executeAndSaveToFile(encryption);
                     System.out.println("File is encrypted, please check the following location: \n" + output.toPath());
                 }
                 case "2" -> {
                     System.out.println("Please specify the security key number");
                     key = Integer.parseInt(reader.readLine());
-                    cipher.executeAndSaveToFile(Mode.DECRYPT, key);
+                    Operation decryption = new Decryptor(key);
+                    cipher.executeAndSaveToFile(decryption);
                     System.out.println("File is encrypted, please check the following location: \n" + output.toPath());
                 }
                 default -> System.out.println("Please specify correct number");
