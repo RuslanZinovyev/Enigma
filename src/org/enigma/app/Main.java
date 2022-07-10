@@ -1,7 +1,7 @@
 package org.enigma.app;
 
-import org.enigma.io.CaesarCipher;
-import org.enigma.options.Mode;
+import org.enigma.controller.CaesarCipher;
+import org.enigma.enumerator.Mode;
 
 import java.io.*;
 

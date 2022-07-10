@@ -1,0 +1,8 @@
+package org.enigma.enumerator;
+
+public enum Options {
+    TEXT_ENCRYPTION_WITH_KEY,
+    TEXT_DECRYPTION_WITH_KEY,
+    TEXT_DECRYPTION_BRUTE_FORCE,
+    TEXT_DECRYPTION_STATIC_CODE_ANALYZER
+}
