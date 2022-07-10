@@ -8,14 +8,24 @@ public class EncryptUtils {
 
     private EncryptUtils() {}
 
-    //TODO this method should be fixed, need to address capital letter
     public static char encryptChar(char symbol, int securityKey) {
+
+        if (Character.isUpperCase(symbol)) {
+            int index = encryptMap.get(Character.toLowerCase(symbol));
+            int shift = (index + securityKey) % encryptMap.size();
+            return Character.toUpperCase(decryptMap.get(shift));
+        }
         int index = encryptMap.get(symbol);
         int shift = (index + securityKey) % encryptMap.size();
         return decryptMap.get(shift);
     }
 
     public static char decryptChar(char symbol, int securityKey) {
+        if (Character.isUpperCase(symbol)) {
+            int index = encryptMap.get(Character.toLowerCase(symbol));
+            int shift = (index + (encryptMap.size() - securityKey)) % encryptMap.size();
+            return Character.toUpperCase(decryptMap.get(shift));
+        }
         int index = encryptMap.get(symbol);
         int shift = (index + (encryptMap.size() - securityKey)) % encryptMap.size();
         return decryptMap.get(shift);

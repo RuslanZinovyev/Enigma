@@ -5,8 +5,7 @@ import java.util.Map;
 
 public class MapUtils {
 
-    private MapUtils() {
-    }
+    private MapUtils() {}
 
     public static final Map<Character, Integer> encryptMap = new HashMap<>();
     public static final Map<Integer, Character> decryptMap = new HashMap<>();
