@@ -27,7 +27,6 @@ public class Main {
                 case "1" -> {
                     System.out.println("Please specify the security key number");
                     key = Integer.parseInt(reader.readLine());
-                    ;
                     cipher.executeAndSaveToFile(Mode.ENCRYPT, key);
                     System.out.println("File is encrypted, please check the following location: \n" + output.toPath());
                 }
