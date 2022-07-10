@@ -12,15 +12,23 @@ import java.io.InputStreamReader;
 
 public class Main {
 
+    private final static String HEADER = "Hello, this is the Caesar Cipher application \nPlease choose the operation: \n\n";
+    private final static String TEXT_ENCRYPTION_WITH_KEY = "1: Encrypt file with the key \n";
+    private final static String TEXT_DECRYPTION_WITH_KEY = "2: Decrypt file with the key \n";
+    private final static String TEXT_DECRYPTION_BRUTE_FORCE = "3: Brute force analyzer \n";
+    private final static String TEXT_DECRYPTION_STATIC_CODE_ANALYZER = "4: Static key analyzer \n";
+    private final static String EXIT = "5: Exit application";
+
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Hello, this is the Caesar Cipher application \n" +
-                "Please choose the operation: \n" +
-                "1 - Encrypt file with the key \n" +
-                "2 - Decrypt file with the key \n" +
-                "3 - Brute force analyzer \n" +
-                "4 - Static key analyzer \n" +
-                "5 - Exit application");
+        System.out.println(
+                        HEADER +
+                        TEXT_ENCRYPTION_WITH_KEY +
+                        TEXT_DECRYPTION_WITH_KEY +
+                        TEXT_DECRYPTION_BRUTE_FORCE +
+                        TEXT_DECRYPTION_STATIC_CODE_ANALYZER +
+                        EXIT
+        );
         try {
             String entry = reader.readLine();
 
