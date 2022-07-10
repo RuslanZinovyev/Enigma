@@ -12,7 +12,7 @@ public class Encryptor implements Operation {
 
     @Override
     public char execute(char symbol) {
-        if (encryptMap.get(symbol) != null) {
+        if (encryptMap.get(Character.toLowerCase(symbol)) != null) {
             if (Character.isUpperCase(symbol)) {
                 int index = encryptMap.get(Character.toLowerCase(symbol));
                 int shift = (index + securityKey) % encryptMap.size();
