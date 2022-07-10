@@ -1,8 +1,7 @@
 package org.enigma.controller;
 
-import org.enigma.exception.ApplicationException;
 import org.enigma.enumerator.ErrorCode;
-import org.enigma.enumerator.Mode;
+import org.enigma.exception.ApplicationException;
 import org.enigma.service.Operation;
 
 import java.io.*;
@@ -42,10 +41,9 @@ public class CaesarCipher {
     }
 
     private void writeToFile(StringBuilder builder) {
-        //TODO need to fix it
-//        if (!outputFile.toPath().endsWith(".txt")) {
-//            throw new ApplicationException("Please specify the text file with .txt extension", ErrorCode.INVALID_FILE_EXTENSION);
-//        }
+        if (!getFileExtension(outputFile).equals(".txt")) {
+            throw new ApplicationException("Please specify the text file with .txt extension", ErrorCode.INVALID_FILE_EXTENSION);
+        }
         try (FileOutputStream fos = new FileOutputStream(outputFile);
              OutputStreamWriter osw = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
              BufferedWriter writer = new BufferedWriter(osw)
@@ -54,6 +52,12 @@ public class CaesarCipher {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private String getFileExtension(File file) {
+        String name = file.getName();
+        int lastIndexOf = name.lastIndexOf(".");
+        return name.substring(lastIndexOf);
     }
 }
 
