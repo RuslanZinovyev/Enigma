@@ -44,6 +44,15 @@ public class MapUtils {
         encryptMap.put('э', 30);
         encryptMap.put('ю', 31);
         encryptMap.put('я', 32);
+        encryptMap.put(' ', 33);
+        encryptMap.put('.', 34);
+        encryptMap.put(',', 35);
+        encryptMap.put('(', 36);
+        encryptMap.put(')', 37);
+        encryptMap.put(':', 38);
+        encryptMap.put('"', 39);
+        encryptMap.put('!', 40);
+
 
         decryptMap.put(0, 'а');
         decryptMap.put(1, 'б');
@@ -78,5 +87,13 @@ public class MapUtils {
         decryptMap.put(30, 'э');
         decryptMap.put(31, 'ю');
         decryptMap.put(32, 'я');
+        decryptMap.put(33, ' ');
+        decryptMap.put(34, '.');
+        decryptMap.put(35, ',');
+        decryptMap.put(36, '(');
+        decryptMap.put(37, ')');
+        decryptMap.put(38, ':');
+        decryptMap.put(39, '"');
+        decryptMap.put(40, '!');
     }
 }
